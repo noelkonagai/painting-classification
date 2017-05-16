@@ -1,19 +1,10 @@
-import urllib
-import pickle
-import re
-import json
-import os
-import requests
-from scipy import misc
-import numpy as np
-from PIL import Image
-import matplotlib
-from skimage.io import imread
+import urllib, pickle, re, json, os, requests, matplotlib, h5py, cv2
 import scipy.io as sio
+import numpy as np
+from scipy import misc
+from PIL import Image
+from skimage.io import imread
 from sklearn.externals import joblib
-import h5py
-import cv2
-
 
 def download(name, U_r_l):
     
@@ -31,7 +22,7 @@ def download(name, U_r_l):
 
 
 def convert_json_to_lists(labels_list):
-    counter =0
+    counter = 0
     artists = list()
     artistIDs = list()
     
@@ -112,7 +103,6 @@ def display_RGBarray(name):
     print("RGB array looks like this:")
     img = convert_img_2array(name)
     
-    
     print(img)
     print("Displaying Image as Array")
     
@@ -132,8 +122,8 @@ def nolabels_list(genre_id):
     return arr    
 
 def convert_all_to_HSV(imagesID):
-    path = 'C:\\Users\\Artem\\Google Drive\\All\\Study Materials (DRPBX)\\Machine Learning\\_StyleAnalyserProject\\ver 0\\dataset\\wikiart\\wikiart\\images\\'
-    hsvpath = 'C:\\Users\\Artem\\Google Drive\\All\\Study Materials (DRPBX)\\Machine Learning\\_StyleAnalyserProject\\ver 0\\dataset\\wikiart\\wikiart\\images\\hsv\\'
+    path = '/Users/noel/Desktop/wikiart/images'
+    hsvpath = '/Users/noel/Desktop/wikiart/images/hsv_noel'
     hsv_images = list()
     cnt = 0
     print(len(imagesID))
@@ -154,7 +144,7 @@ def convert_all_to_HSV(imagesID):
     return hsv
 
 def average_hue(imageID):
-    hsvpath = 'C:\\Users\\Artem\\Google Drive\\All\\Study Materials (DRPBX)\\Machine Learning\\_StyleAnalyserProject\\ver 0\\dataset\\wikiart\\wikiart\\images\\hsv\\'
+    hsvpath = '/Users/noel/Desktop/wikiart/images/hsv'
     cnt = 0
     total = 0
     image = open(hsvpath+str(imageID)+'.p', 'rb')
@@ -245,13 +235,13 @@ def dominant_color(hsv):
 #COMPOSITION FEATURES START HERE
 
 
-''' 
+    ''' 
     PLUS number of quantized hues(number of colors that a painting consists of) 
     hue distribution (19 features)
     find three largest segments for each image(horizontal and vertical coordinates of the mass centers)
     find average saturation for each segment
     find average brightness for each segment
-'''
+    '''
     
 
 def main():
@@ -268,8 +258,8 @@ def main():
     
     
     
-    path = 'C:\\Users\\Artem\\Google Drive\\All\\Study Materials (DRPBX)\\Machine Learning\\_StyleAnalyserProject\\ver 0\\dataset\\wikiart\\wikiart\\images\\'
-    display_RGBarray(str(path+'249075'))
+    path = '/Users/noel/Desktop/wikiart/images'
+
     
     #this wil be used for evaluation 
     #no_labels_ID = nolabels_list(genre_id)
