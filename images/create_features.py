@@ -57,7 +57,7 @@ def make_dataframe(img_hsv, h, w):
 the first two features: average hue, average saturation
 '''
 
-def f1_2(hsv_df):
+def get1_2(hsv_df):
     return hsv_df.mean()['H'], hsv_df.mean()['S']
 
 
@@ -77,7 +77,7 @@ def make_bins(hsv_df, k):
 '''
 count the num of hue bins that are most prominent, c is a multiplicatory component
 '''
-def f3(hue_bins, c):
+def get3(hue_bins, c):
     
     max_bins = max(hue_bins.tolist())
     count = 0
@@ -92,7 +92,7 @@ def f3(hue_bins, c):
 features 4 to 23, the dispersion of each hue component, returns as list
 '''
 
-def f4_23(hue_bins, px):
+def get4_23(hue_bins, px):
     hue_bins = hue_bins.sort_index().tolist()
     color_dispersion = []
     for i in range(len(hue_bins)):
@@ -214,7 +214,7 @@ def center_of_mass(arr, h, w):
 extract features 23 to 34
 '''
 
-def f24_35(df, lab, height, width):
+def get24_35(df, lab, height, width):
     f24_f26 = []
     f27_f29 = []
     f30_f32 = []
@@ -237,7 +237,7 @@ def f24_35(df, lab, height, width):
 extracts features 36-50, returns them in a list format
 '''
 
-def f36_50(df, lab, hue, sat, val, h, w):
+def get36_50(df, lab, hue, sat, val, h, w):
     f36_40 = []
     f41_45 = []
     f46_50 = []
